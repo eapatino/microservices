@@ -1,6 +1,7 @@
 package com.microservices.microservices.controller;
 
 
+import com.microservices.microservices.controller.objects.Person;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,8 +11,10 @@ public class ControllerVehicle {
         return "Bienvenido, no hay vehiculos"+dato;
     }
     @PostMapping("/services")
-    public String consultar(){
-        return "Bienvenido, no hay vehiculos";
+    @ResponseBody
+    public Person consultar(){
+        Person p = new Person(1,"juan");
+        return p;
     }
 
     @RequestMapping(value = "/services-test")
