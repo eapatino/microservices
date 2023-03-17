@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Consumiendo servicio con AJAX</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnConsultar').click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "http://localhost:8080/services",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    crossDomain: true,
+                     headers: { "Accept": "application/json",   "Access-Control-Allow-Origin": "*"},
+    
+                    success: function (response) {
+                        // Si la respuesta del servidor es exitosa, la variable 'response' contendrá el objeto Person retornado
+                        console.log(response);
+                        $('#resultado').text(response);
+                    },
+                    error: function (xhr, status, error) {
+                        // Si se produce un error al llamar al servicio, se mostrará un mensaje de error en la consola
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Consumiendo servicio con AJAX</h1>
+    <button id="btnConsultar">Consultar</button>
+    <div id="resultado"></div>
+</body>
+
+</html>
